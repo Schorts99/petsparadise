@@ -1,0 +1,112 @@
+!!! 5
+%html
+  %head
+    %title PetsParadise
+    = csrf_meta_tags
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    :javascript
+      $(document)
+        .ready(function() {
+          $('.masthead')
+            .visibility({
+              once: false,
+              onBottomPassed: function() {
+                $('.fixed.menu').transition('fade in');
+              },
+              onBottomPassedReverse: function() {
+                $('.fixed.menu').transition('fade out');
+              }
+            });
+        });
+
+  %body.pushable
+    %div.ui.large.top.fixed.menu.transition.hidden
+      %div.ui.container
+        -if current_page?(root_path)
+          %a= link_to "PetsParadise", root_path, class:"active item font-name"
+        -else
+          %a= link_to "PetsParadise", root_path, class:"item font-name"
+        %a.item Eventos
+        -if user_signed_in?
+          %a.item Mascotas
+        -if current_page?("/se-parte")
+          %a= link_to "Se parte", "/se-parte", class: "active item"
+        -else
+          %a= link_to "Se parte", "/se-parte", class: "item"
+        %div.right.menu
+          -if user_signed_in?
+            %div.item              
+              = current_entity.name + " " + current_entity.last_name
+            %div.item
+              = link_to "Salir", destroy_user_session_path, method: :delete, class:"ui inverted red button"
+          -else
+            %div.item
+              %a= link_to "Ingresar", new_user_session_path, class:"ui button"
+            %div.item
+              %a= link_to "Registrar", new_user_registration_path, class:"ui primary button"
+    %div.pusher
+      %div.ui.inverted.vertical.masthead.center.aligned.segment.no-padding
+        %div.ui.container
+          %div.ui.large.secondary.inverted.pointing.menu
+            %a.toc.item
+              -if current_page?(root_path)
+                %a= link_to "PetsParadise", root_path, class:"active item font-name"
+              -else
+                %a= link_to "PetsParadise", root_path, class:"item font-name"
+              %a.item Eventos
+              -if user_signed_in?
+                %a.item Mascotas
+              -if current_page?("/se-parte")
+                %a= link_to "Se parte", "/se-parte", class: "active item"
+              -else
+                %a= link_to "Se parte", "/se-parte", class: "item"
+            %div.right.item
+              -if user_signed_in?
+                %div.item
+                  = current_entity.name + " " + current_entity.last_name
+                %div.item
+                  = link_to "Salir", destroy_user_session_path, method: :delete, class:"ui inverted red button"
+              -else
+                %div.item
+                  %a= link_to "Ingresar", new_user_session_path, class:"ui inverted button"
+                %div.item
+                  %a= link_to "Registrar", new_user_registration_path, class:"ui inverted button"
+        -if current_page?(root_path)
+          = render "main/index"
+        -else
+          = yield
+      -if current_page?(root_path)
+        = yield
+      %div.ui.inverted.vertical.footer.segment
+        %div.ui.container
+          %div.ui.stackable.inverted.divided.equal.height.stackable.grid
+            %div.three.wide.column
+              %h4.ui.inverted.header Acerca de
+              %div.ui.inverted.link.list
+                %a.item Quienes somos?
+                %a.item Responsabilidad
+                %a.item Contactanos
+                %a.item Ayuda
+            %div.three.wide.column
+              %h4.ui.inverted.header Servicios
+              %div.ui.inverted.link.list
+                %a.item Paseo
+                %a.item Cuídado
+                %a.item Eventos
+                %a.item Competencias
+            %div.three.wide.column
+              %h4.ui.inverted.header Labor social
+              %div.ui.inverted.link.list
+                %a.item Donaciones
+                %a.item Albergues
+                %a.item Centros de ayuda
+            %div.five.wide.column
+              %h4.ui.inverted.header Siguenos
+              %button.ui.circular.facebook.icon.button
+                %i.fa.fa-facebook
+              %button.ui.circular.twitter.icon.button
+                %i.fa.fa-twitter
+              %button.ui.circular.instagram.icon.button
+                %i.fa.fa-instagram

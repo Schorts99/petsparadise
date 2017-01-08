@@ -1,0 +1,18 @@
+= form_for(Member.new, as: :member, url: registration_path(:member)) do |f|
+  = devise_error_messages!
+  %br
+  .col-sm-9
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      = f.email_field :email, autofocus: true, class:"mdl-textfield__input"
+      = f.label :email, "Correo electrónico", class:"mdl-textfield__label", style: "color: #d7dadb !important"
+  .col-sm-9
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      = f.password_field :password, autofocus: true, class:"mdl-textfield__input"
+      = f.label :password, "Contraseña", class:"mdl-textfield__label", style: "color: #d7dadb !important"
+  .row.center-xs.middle-xs.center-xs
+    .col-sm-4
+      %button.positive.ui.button Ingresa
+    .col-sm-5
+      %div.ui.checkbox
+        = f.check_box :remember_me
+        = f.label :remember_me, "Recordar", style: "color: #fff"

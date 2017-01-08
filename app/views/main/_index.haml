@@ -1,0 +1,13 @@
+-if user_signed_in?
+  %h1 Aquí algo bonito
+-else
+  %div
+    .row
+      .col-sm-9.fondo{style: "background-image: url('paseo.jpg') !important"}
+        %div.ui.text.container
+          %h1.ui.inverted.header Bienvenido a PetsParadise!
+          %h2 Tu mascota necesita un día de paseo
+          %div.ui.huge.primary.button Conoce más
+      .col-sm-3.left
+        %h2.center-xs.inverted.header.ui Registrate
+        = render "devise/registrations/new"

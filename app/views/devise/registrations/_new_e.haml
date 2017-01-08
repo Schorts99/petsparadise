@@ -1,0 +1,59 @@
+= form_for(Member.new, as: :member, url: registration_path(:member)) do |f|
+  = devise_error_messages!
+  %br
+  .row
+    .col-sm-6
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.text_field :name, autofocus: true, class:"mdl-textfield__input"
+        = f.label :name, "Nombre", class:"mdl-textfield__label", style: "color: #d7dadb !important"
+    .col-sm-6
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.text_field :last_name, autofocus: true, class:"mdl-textfield__input"
+        = f.label :last_name, "Apellidos",class:"mdl-textfield__label", style: "color: #d7dadb !important"
+  .col-sm-9.no-left-padding
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+      = f.email_field :email, autofocus: true, class:"mdl-textfield__input"
+      = f.label :email, "Correo electrónico", class:"mdl-textfield__label", style: "color: #d7dadb !important"
+  .row
+    .col-sm-6
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.text_field :phone, autofocus: true, class:"mdl-textfield__input"
+        = f.label :phone, "Número celular",class:"mdl-textfield__label", style: "color: #d7dadb !important"
+    .col-sm-3
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.text_field :age, autofocus: true, class:"mdl-textfield__input"
+        = f.label :age, "Edad", class:"mdl-textfield__label", style: "color: #d7dadb !important"
+  .row
+    .col-sm-6
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.text_field :reference_phone, autofocus: true, class:"mdl-textfield__input"
+        = f.label :reference_phone, "Número de referencia",class:"mdl-textfield__label", style: "color: #d7dadb !important"
+    .col-sm-6
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.text_field :reference_phone2, autofocus: true, class:"mdl-textfield__input"
+        = f.label :reference_phone2, "Número de referencia",class:"mdl-textfield__label", style: "color: #d7dadb !important"
+  .row
+    .col-sm-6
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.password_field :password, autofocus: true, class:"mdl-textfield__input"
+        = f.label :password, "Contraseña", class:"mdl-textfield__label", style: "color: #d7dadb !important"
+    .col-sm-6
+      .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+        = f.password_field :password_confirmation, autofocus: true, class:"mdl-textfield__input"
+        = f.label :password_confirmation, "Confirmar contraseña", class:"mdl-textfield__label", style: "color: #d7dadb !important"
+  .row.center-xs.middle-xs.center-xs
+    .col-sm-4
+      %button.positive.ui.button Registrate
+  .row.middle-xs
+    .col-sm-12.left
+      %br
+      %div.ui.slider.checkbox
+        = f.check_box :bad, style: "color: #fff !important"
+        = f.label :bad, "Confirma no tener antecedentes penales", style: "color: #fff !important"
+    .col-sm-12.left
+      %br
+      %div.ui.slider.checkbox
+        = f.check_box :conditions, style: "color: #fff !important"
+        = f.label :conditions, "Acepto los terminos y condiciones", style: "color: #fff !important"
+  %br
+  %p.justify.grey-text.faqs.right-padding Al continuar, acepto que PetsParadise o sus representantes puedan ponerse en contacto conmigo por correo electrónico, teléfono o SMS (así como a través de medios automatizados) al correo electrónico o al teléfono que he indicado, incluso por razones promocionales. He leído y comprendo la Declaración de privacidad.
