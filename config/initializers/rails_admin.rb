@@ -10,6 +10,7 @@ RailsAdmin.config do |config|
 
   ## == Cancan ==
   # config.authorize_with :cancan
+  config.authorize_with :cancan
 
   ## == Pundit ==
   # config.authorize_with :pundit
@@ -22,23 +23,6 @@ RailsAdmin.config do |config|
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar true
-
-
-  RailsAdmin.config do |config|
-  config.main_app_name = ["PetsParadise"]
-  config.main_app_name = Proc.new { |controller| [ "PetsParadise - #{controller.params[:action].try(:titleize)}" ] }
-  end
-
-  RailsAdmin.config do |config|
-  config.authenticate_with do
-    warden.authenticate! scope: :manager
-  end
-  config.current_user_method(&:current_manager)
-  end
-
-  RailsAdmin.config do |config|
-  config.authorize_with :cancan
-  end
 
   config.actions do
     dashboard                     # mandatory

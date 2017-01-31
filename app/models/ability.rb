@@ -4,8 +4,9 @@ class Ability
   def initialize(manager)
     manager ||= Manager.new
     if manager.role == "principal"
-      can :manage, :all, :rails_admin, :dashboard
+      can :manage, :all
     elsif manager.role == "assistant"
+      can :read, :all
     end
 
     # Define abilities for the passed in user here. For example:
